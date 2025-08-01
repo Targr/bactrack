@@ -17,5 +17,5 @@ setup(
     ],
     author="Robert Targ",
     description="Bacterial motility tracking and classification toolkit",
-    license="FIGURE OUT",
+    license="MIT",
 )
