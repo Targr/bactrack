@@ -5,8 +5,17 @@ setup(
     version="0.1.0",
     packages=find_packages(),
     install_requires=[
-        "opencv-python", "numpy", "matplotlib", "trackpy",
-        "pandas", "ipywidgets", "scikit-learn", "tifffile", "shapely"
+        "numpy",
+        "pandas",
+        "matplotlib",
+        "trackpy",
+        "opencv-python",
+        "tifffile",
+        "scikit-learn",
+        "shapely",
+        "ipywidgets"
     ],
-    python_requires=">=3.7",
+    author="Robert Targ",
+    description="Bacterial motility tracking and classification toolkit",
+    license="FIGURE OUT",
 )
