@@ -1,3 +1,7 @@
+from shapely.geometry import LineString
+import pickle
+import numpy as np
+
 def detect_motility(
     traj, params,
     peri=False, mono=False,
