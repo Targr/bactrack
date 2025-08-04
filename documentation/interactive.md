@@ -5,11 +5,13 @@ The `interactive.py` module provides functionality for interactively tuning dete
 ## Function: `interactive_detection_tuner`
 
 ```python
-interactive_detection_tuner(
+import bactracker as bt
+
+bt.interactive_detection_tuner(
     video_path,
     max_frames=100,
-    minmass_range=(1, 50, 15),
-    diameter_range=(3, 15, 7),
+    minmass_range=(1, 1, 15),
+    diameter_range=(3, 1, 11),
     merge_dist_range=(1, 20, 7)
 )
 ```
@@ -20,8 +22,8 @@ interactive_detection_tuner(
 | ------------------ | ----- | ----------- | --------------------------------------------------------------------------- |
 | `video_path`       | str   | required    | Path to the input video file (e.g. `.mp4`, `.avi`).                         |
 | `max_frames`       | int   | 100         | Maximum number of frames to read from the video for analysis.               |
-| `minmass_range`    | tuple | (1, 50, 15) | Range and default value for `minmass` slider. Format: (min, max, default).  |
-| `diameter_range`   | tuple | (3, 15, 7)  | Range and default value for `diameter` slider. Format: (min, max, default). |
+| `minmass_range`    | tuple | (1, 50, 15) | Range and default value for `minmass` slider. Format: (default, min, max).  |
+| `diameter_range`   | tuple | (3, 15, 7)  | Range and default value for `diameter` slider. Format: (default, min, max). |
 | `merge_dist_range` | tuple | (1, 20, 7)  | Range and default for merging rod-shaped detections.                        |
 
 ### Behavior
