@@ -1,7 +1,7 @@
 
 #bactracker
 
-Bactracker is a python package for detecting, tracting, and classifying bacterial motility types from microscopy videos. It supports multiple forms of motility like swimming, twitching, gliding, and interprets interpretable summaries of behavior.
+Bactracker is a modular Python toolkit for detecting, tracking, summarizing, and classifying bacterial motility patterns from microscopy videos. It supports multiple forms of motility like swimming, twitching, gliding, and interprets interpretable summaries of behavior.
 
 ##features
 -video loading and preprocessing with automatic background subtraction
