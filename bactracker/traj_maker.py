@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def build_trajectories(t_filtered, frame_interval=0.05):
     traj = []
     for particle, group in t_filtered.groupby('particle'):
