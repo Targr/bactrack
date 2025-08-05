@@ -1,9 +1,11 @@
+import os
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 import trackpy as tp
 from ipywidgets import interact, IntSlider, Checkbox
 from .detection import merge_rods_by_shape
+from tifffile import imread
 
 def interactive_detection_tuner(
     video_path,
@@ -12,19 +14,35 @@ def interactive_detection_tuner(
     diameter_range=(3, 15, 7),
     merge_dist_range=(1, 20, 7)
 ):
-    cap = cv2.VideoCapture(video_path)
-    frames, frame_count = [], 0
-    while frame_count < max_frames:
-        ret, frame = cap.read()
-        if not ret: break
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY).astype(np.float32)
-        frames.append(gray)
-        frame_count += 1
-    cap.release()
+    ext = os.path.splitext(video_path)[1].lower()
+    frames = []
 
-    if not frames:
-        raise RuntimeError("No frames could be read from the video.")
-    
+    if ext in ['.tif', '.tiff']:
+        try:
+            stack = imread(video_path).astype(np.float32)
+        except Exception as e:
+            raise RuntimeError(f"Failed to read TIFF stack: {e}")
+        
+        if stack.ndim == 3:  # multiple frames
+            frames = stack[:max_frames]
+        elif stack.ndim == 2:  # single frame
+            frames = [stack]
+        else:
+            raise ValueError("Unsupported TIFF shape.")
+    else:
+        cap = cv2.VideoCapture(video_path)
+        frame_count = 0
+        while frame_count < max_frames:
+            ret, frame = cap.read()
+            if not ret: break
+            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY).astype(np.float32)
+            frames.append(gray)
+            frame_count += 1
+        cap.release()
+
+    if not frames or len(frames) == 0:
+        raise RuntimeError("No frames could be read from the input.")
+
     stack = np.stack(frames)
     avg_frame = np.mean(stack, axis=0)
     first_subtracted = stack[0] - avg_frame
