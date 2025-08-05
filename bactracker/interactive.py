@@ -40,7 +40,7 @@ def interactive_detection_tuner(
             frame_count += 1
         cap.release()
 
-    if not frames or len(frames) == 0:
+    if frames is None or (isinstance(frames,(list,np.npndarray)) and len(frames)==0):
         raise RuntimeError("No frames could be read from the input.")
 
     stack = np.stack(frames)
