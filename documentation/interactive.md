@@ -20,7 +20,7 @@ bt.interactive_detection_tuner(
 
 | Parameter          | Type  | Default     | Description                                                                 |
 | ------------------ | ----- | ----------- | --------------------------------------------------------------------------- |
-| `video_path`       | str   | required    | Path to the input video file (e.g. `.mp4`, `.avi`).                         |
+| `video_path`       | str   | required    | Path to the input video file or image stack (e.g. `.mp4`, `.avi`, 'tif').   |
 | `max_frames`       | int   | 100         | Maximum number of frames to read from the video for analysis.               |
 | `minmass_range`    | tuple | (1, 50, 15) | Range and default value for `minmass` slider. Format: (default, min, max).  |
 | `diameter_range`   | tuple | (3, 15, 7)  | Range and default value for `diameter` slider. Format: (default, min, max). |
